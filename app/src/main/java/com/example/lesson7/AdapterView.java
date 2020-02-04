@@ -10,7 +10,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 
 public class AdapterView extends RecyclerView.Adapter<ViewHolder> {
-
+IRefactorActivity iRefactorActivity;
     ArrayList<Task> tasks;
     public AdapterView(ArrayList<Task> tasks){
         this.tasks = tasks;
@@ -35,5 +35,10 @@ public class AdapterView extends RecyclerView.Adapter<ViewHolder> {
     @Override
     public int getItemCount() {
         return tasks.size();
+    }
+
+    public void  idInterfase(IRefactorActivity listner){
+        this.iRefactorActivity =listner;
+
     }
 }

@@ -6,16 +6,22 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 
 import java.util.ArrayList;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity  {
 ArrayList<Task> tasks = new ArrayList<>();
 //дастаем таск создаем массив тасков .
 RecyclerView recyclerView;
-AdapterView adapter;
+AdapterView adapter ;
+Task task;
+int position;
+
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,6 +32,16 @@ AdapterView adapter;
         recyclerView = findViewById(R.id.recycler_view);
         adapter = new AdapterView(tasks);
         recyclerView.setAdapter(adapter);
+        adapter.idInterfase(new IRefactorActivity() {
+            @Override
+            public void goToRefactorActiv(int position) {
+                task =tasks.get(position);
+                Intent intent = new Intent(MainActivity.this,RefactorActivity.class);
+                intent.putExtra("key",task);
+                startActivityForResult(intent,15);
+            }
+        });
+
         Button button = findViewById(R.id.open);
         button.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -57,5 +73,16 @@ AdapterView adapter;
             adapter.notifyDataSetChanged();
             Storage.save(tasks,this);
         }
+        if(resultCode == RESULT_OK && requestCode ==15){
+            Task task = (Task) data.getSerializableExtra("keys");
+            tasks.add(task);
+            adapter.notifyDataSetChanged();
+            Storage.save(tasks,this);
+
+        }
+
+
     }
+
+
 }
