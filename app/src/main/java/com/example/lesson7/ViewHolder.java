@@ -33,4 +33,6 @@ public class ViewHolder  extends RecyclerView.ViewHolder {
         textDiscript.setText(task.description);
         textDeadline.setText(task.deadLine);
     }
+
+    
 }
