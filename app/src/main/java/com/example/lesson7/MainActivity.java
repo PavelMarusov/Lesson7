@@ -18,7 +18,7 @@ ArrayList<Task> tasks = new ArrayList<>();
 RecyclerView recyclerView;
 AdapterView adapter ;
 Task task;
-int position;
+
 
 
 
@@ -40,6 +40,13 @@ int position;
                 intent.putExtra("key",task);
                 startActivityForResult(intent,15);
             }
+
+            @Override
+            public void delete() {
+                tasks.remove(task);
+            }
+
+
         });
 
         Button button = findViewById(R.id.open);

@@ -29,7 +29,7 @@ public class RefactorActivity extends AppCompatActivity {
         deletBtn =findViewById(R.id.RA_delete_button);
 
         Intent intent = getIntent();
-        task = (Task) intent.getSerializableExtra("keys");
+        task = (Task) intent.getSerializableExtra("key");
         if(task!=null){
             titelFix.setText(task.title);
             discriptFix.setText(task.description);
@@ -67,30 +67,11 @@ public class RefactorActivity extends AppCompatActivity {
         deletBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Task task = new Task();
-                if (titelFix.getText().toString().trim().equals("")) {
-                    message("Введите тему");
-                    return;
-                } else {
-                    task.title = titelFix.getText().toString().trim();
-                }
-                if (discriptFix.getText().toString().trim().equals("")) {
-                    message("Введите описание");
-                    return;
-                } else {
-                    task.description = discriptFix.getText().toString().trim();
 
-                }
-                if (deadlineFix.getText().toString().trim().equals("")) {
-                    message("Нет дэд лайн");
-                    return;
-                } else {
-                    task.deadLine = deadlineFix.getText().toString();
-                }
-                Intent intent = new Intent();
-                intent.putExtra("task", task);
-                setResult(RESULT_OK, intent);
-                finish();
+
+
+
+
             }
         });
 
