@@ -71,6 +71,9 @@ IRefactorActivity iRefactorActivity;
         }
 
         public void  onbind( Task task){
+            if (task == null) {
+                return;
+            }
 
             textTitle.setText(task.title);
             textDiscript.setText(task.description);

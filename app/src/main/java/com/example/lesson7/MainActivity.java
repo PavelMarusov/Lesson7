@@ -18,7 +18,7 @@ ArrayList<Task> tasks = new ArrayList<>();
 RecyclerView recyclerView;
 AdapterView adapter ;
 Task task;
-
+int position;
 
 
 
@@ -35,6 +35,7 @@ Task task;
         adapter.idInterfase(new IRefactorActivity() {
             @Override
             public void goToRefactorActiv(int position) {
+                MainActivity.this.position = position;
                 task =tasks.get(position);
                 Intent intent = new Intent(MainActivity.this,RefactorActivity.class);
                 intent.putExtra("key",task);
@@ -81,11 +82,17 @@ Task task;
             Storage.save(tasks,this);
         }
         if(resultCode == RESULT_OK && requestCode ==15){
-            Task task = (Task) data.getSerializableExtra("keys");
-            tasks.add(task);
+            Task task = (Task) data.getSerializableExtra("task");
+            tasks.remove(position);
+            tasks.add(position,task);
             adapter.notifyDataSetChanged();
             Storage.save(tasks,this);
 
+        }
+        if (resultCode==5&&requestCode == 15){
+            tasks.remove(position);
+            adapter.notifyDataSetChanged();
+            Storage.save(tasks,this);
         }
 
 

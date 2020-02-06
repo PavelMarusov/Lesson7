@@ -67,11 +67,8 @@ public class RefactorActivity extends AppCompatActivity {
         deletBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-
-
-
-
+                setResult(5);
+                finish();
             }
         });
 
